@@ -1,11 +1,10 @@
 import express from "express";
-import bodyParser from "body-parser";
 
 const app = express();
 const port = 3001;
 const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 //1. GET a random joke
 app.get("/random", (req, res)=>{
@@ -16,7 +15,12 @@ app.get("/random", (req, res)=>{
 });
 
 //2. GET a specific joke
-
+app.get("/jokes/:id", (req, res)=>{
+  const id = parseInt(req.params.id);
+  const jokeFound = jokes.find((joke) => joke.id === id);
+  res.json(jokeFound);
+  console.log(jokeFound);
+});
 
 //3. GET a jokes by filtering on the joke type
 
