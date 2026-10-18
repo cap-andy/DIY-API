@@ -2,14 +2,21 @@ import express from "express";
 import bodyParser from "body-parser";
 
 const app = express();
-const port = 3000;
+const port = 3001;
 const masterKey = "4VGP2DN-6EWM4SJ-N6FGRHV-Z3PR3TT";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //1. GET a random joke
+app.get("/random", (req, res)=>{
+  const randomJoke = Math.floor(Math.random() * jokes.length);
+  res.json(jokes[randomJoke]);
+  console.log(randomJoke);
+  console.log(jokes[randomJoke]);
+});
 
 //2. GET a specific joke
+
 
 //3. GET a jokes by filtering on the joke type
 
